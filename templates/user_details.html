@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    <img src="{{user.image_url}}" alt="">
-    <h1>{{user.first_name}} {{user.last_name}}</h1>
-    <a href="/user_edit/{{user.id}}">Edit</a>
-    <form action="/{{user.id}}/delete" method="POST">
-        <button>Delete</button>
-    </form>
+    <div class="container">
+        <img src="{{user.image_url}}" alt="">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+        <form action="/user_edit/{{user.id}}">
+            <button class="btn btn-primary">Edit</button>
+        </form>
+        <form action="/{{user.id}}/delete" method="POST">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+        <h3>Posts</h3>
+        <ul>
+            {% for post in user.posts %}
+            <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <form action="/users/{{user.id}}/post/new">
+            <button class="btn btn-primary">Add Post</button>
+        </form>
+        
+    </div>
+
     <!-- <a href="/{{user.id}}/delete">Delete</a> -->
 </body>
 </html>

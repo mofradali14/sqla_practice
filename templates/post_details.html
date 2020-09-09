@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <p><i>By {{post.users.first_name}} {{post.users.last_name}} at {{post.date_format}}</i></p>
+    
+    <form action="/{{post.users.id}}">
+        <button class="btn btn-info">Cancel</button>
+    </form>
+    <form action="/posts/{{post.id}}/edit">
+        <button class="btn btn-primary">Edit</button>
+    </form>
+    <form action="/posts/{{post.id}}/delete" method="POST">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+</body>
+</html>
