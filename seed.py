@@ -1,4 +1,4 @@
-from models import User, Post, db
+from models import User, Post, db, Tag, PostTag
 from app import app
 
 db.drop_all()
@@ -13,4 +13,9 @@ db.session.add(ali)
 db.session.commit()
 
 db.session.add_all([p1, p2])
+db.session.commit()
+
+tag1 = Tag(name='test')
+
+db.session.add(tag1)
 db.session.commit()

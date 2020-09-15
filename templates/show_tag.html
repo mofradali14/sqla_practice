@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>{{tag.name}}</h1>
+    <ul>
+        {% for post in tag_posts %}
+        <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="/tags/{{tag.id}}/edit">Edit</a>
+    <form action="/tags/{{tag.id}}/delete" method="POST">
+        <button>Delete</button>
+    </form>
+    
+</body>
+</html>

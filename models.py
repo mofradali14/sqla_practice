@@ -36,7 +36,23 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    # tags = db.relationship('Tag', backref='posts')
 
     @property
     def date_format(self):
         return self.created_at.strftime('%a %b %-d %Y, %-I:%M %p')
+
+
+class Tag(db.Model):
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text, unique=True)
+
+    posts = db.relationship('Post',secondary='post_tags', backref='tags')
+
+class PostTag(db.Model):
+    __tablename__ = 'post_tags'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True, nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True, nullable=False)
